@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Bus Services</string>
+    <string name="logout">Log Out</string>
+    <string name="aboutus">About Us</string>
+    <string name="previousrides">Previous Rides</string>
+    <string name="bookinghistory">Booking History</string>
+</resources>

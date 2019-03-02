@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "534630155128",
+    "firebase_url": "https://bus-services-5deb2.firebaseio.com",
+    "project_id": "bus-services-5deb2",
+    "storage_bucket": "bus-services-5deb2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:534630155128:android:684bd27bf38dae54",
+        "android_client_info": {
+          "package_name": "com.vishal.busservices"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "534630155128-5tdjjsccjstkub8u1gg7neo71fdvfbha.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vishal.busservices",
+            "certificate_hash": "2b941c9697447146382d02220c298f949aed9108"
+          }
+        },
+        {
+          "client_id": "534630155128-tui2c48ujat47q4tah1smt0c3hu5inu8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASzA7LZp1KmBUEpwJ-_Qd37cRqF9Zbcm8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "534630155128-tui2c48ujat47q4tah1smt0c3hu5inu8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
