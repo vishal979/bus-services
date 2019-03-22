@@ -11,15 +11,32 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
 
     NavigationView navigationView;
     ImageView drawerPullIV;
     DrawerLayout drawerLayout;
+
+    TextView nextBusTextView;
+
+    FirebaseFirestore db=FirebaseFirestore.getInstance();
+
+    String nextBusDate="";
+
+    private Button bookTicket1, bookTicket2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +49,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
+        nextBusTextView=(TextView) findViewById(R.id.nextBusTextView);
+
+        bookTicket1=(Button) findViewById(R.id.bookTicketBtn1);
+        bookTicket2=(Button) findViewById(R.id.bookTicketBtn2);
+
+        bookTicket1.setOnClickListener(this);
+        bookTicket2.setOnClickListener(this);
+
+
+        DocumentReference documentReference=db.collection("busesandtimings").document("Date").collection("TIming").document("M0UmCxviWFxRglOrqmz1");
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot doc=task.getResult();
+                    nextBusDate=doc.get("Date").toString();
+                    nextBusTextView.setText("Buses for date "+nextBusDate);
+                    Toast.makeText(MainActivity.this, "Dateeeeee:  "+doc.get("Date"), Toast.LENGTH_SHORT).show();
+                }
+                else{
+                }
             }
         });
     }
@@ -57,5 +98,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(this, "previous rides", Toast.LENGTH_SHORT).show();
         }
         return true;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId()==R.id.bookTicketBtn1){
+            Intent intent=new Intent(MainActivity.this,BookTicketActivity.class);
+            startActivity(intent);
+        }
+        if(view.getId()==R.id.bookTicketBtn2){
+            Intent intent=new Intent(MainActivity.this,BookTicketActivity.class);
+            startActivity(intent);
+        }
     }
 }

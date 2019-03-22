@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Enter booking details"
+    android:textColor="#000"
+    android:layout_centerHorizontal="true"
+    android:textSize="30sp"
+    android:id="@+id/enterTV"
+    android:layout_marginTop="20dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameET"
+        android:layout_below="@+id/enterTV"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="30dp"
+        android:hint="Enter Name"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameET"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="30dp"
+        android:hint="Enter ID"
+        android:id="@+id/idET"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/paymentBtn"
+        android:layout_below="@+id/idET"
+        android:layout_marginTop="30dp"
+        android:text="Proceed to Payment"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>
