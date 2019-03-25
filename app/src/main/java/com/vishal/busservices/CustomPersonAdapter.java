@@ -24,16 +24,16 @@ public class CustomPersonAdapter extends RecyclerView.Adapter<CustomPersonAdapte
     @Override
     public CustomPersonAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater=LayoutInflater.from(context);
-        View view=inflater.inflate(R.layout.custom_bus_layout,null);
+        View view=inflater.inflate(R.layout.layout_ticket,null);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CustomPersonAdapter.ViewHolder holder, int position) {
         Person person=personList.get(position);
-        holder.idTV.setText(person.getId());
-        holder.nameTV.setText(person.getName());
-        holder.depTimeTV.setText(person.getDepartureTime());
+        holder.idTV.setText(""+person.getId());
+        holder.nameTV.setText(""+person.getName());
+        holder.depTimeTV.setText(""+person.getDepartureTime());
     }
 
     @Override

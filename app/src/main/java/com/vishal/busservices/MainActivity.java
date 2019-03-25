@@ -12,7 +12,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,7 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -38,12 +36,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirebaseFirestore db;
 
     List<DetailBusClass> busList;
-    TextView nextBusTV;
+    TextView nextBusTV,UserTV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         navigationView=(NavigationView) findViewById(R.id.app_drawer_nv);
+        View headerView=navigationView.getHeaderView(0);
+        UserTV=(TextView) headerView.findViewById(R.id.navigationUsernameTV);
         navigationView.setNavigationItemSelectedListener(this);
         drawerLayout=(DrawerLayout) findViewById(R.id.drawerLayout);
         drawerPullIV=(ImageView) findViewById(R.id.drawerPullIV);
@@ -59,6 +59,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         nextBusTV=(TextView) findViewById(R.id.nextBusTextView);
 
+        String email=FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        String[] parts=email.split("@");
+        String username=parts[0];
+        UserTV.setText(""+username);
 
         db=FirebaseFirestore.getInstance();
 
@@ -79,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if(task.isSuccessful()){
                     busList=new ArrayList<>();
                     for(DocumentSnapshot documentSnapshot : task.getResult()){
-                        busList.add(new DetailBusClass(documentSnapshot.getData().get("time").toString(),Integer.parseInt(documentSnapshot.getData().get("seats").toString()),documentSnapshot.getId()));
+                        busList.add(new DetailBusClass(documentSnapshot.getData().get("time").toString(),Integer.parseInt(documentSnapshot.getData().get("seats_available").toString()),documentSnapshot.getId()));
                     }
                     CustomBusAdapter customBusAdapter=new CustomBusAdapter(getBaseContext(),busList);
                     recyclerView.setAdapter(customBusAdapter);

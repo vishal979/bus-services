@@ -64,7 +64,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         name = getIntent().getStringExtra("name");
         id = getIntent().getStringExtra("id");
         busId = getIntent().getStringExtra("busid");
-        DocumentReference documentReference = db.collection("buses").document("wpZLISKskWTXq5K6CvDr");
+        DocumentReference documentReference = db.collection("busDate").document("wpZLISKskWTXq5K6CvDr");
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -81,7 +81,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
 
         final String timeStamp = new SimpleDateFormat("yyyy/MM/dd : HH:mm:ss").format(Calendar.getInstance().getTime());
 
-        final DocumentReference documentReference = db.collection("Buses").document(getIntent().getStringExtra("busid"));
+        final DocumentReference documentReference = db.collection("buses").document(getIntent().getStringExtra("busid"));
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -89,7 +89,8 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
                     DocumentSnapshot document = task.getResult();
 
                     seatAvailable = document.getData().get("seats_available").toString();
-                    String totalSeats = document.getData().get("total_seats").toString();
+                    String totalSeats = document.getData().get("seats").toString();
+//                    String totalSeats="50";
                     seatNumber = String.valueOf(Integer.parseInt(totalSeats) - Integer.parseInt(seatAvailable) + 1);
                     Map<String, Object> data = new HashMap<>();
                     data.put("seat_number", seatNumber);
@@ -104,7 +105,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
                     DocumentReference usersRef = db.collection("Users/" + FirebaseAuth.getInstance().getCurrentUser().getEmail() + "/BookedTickets").document(userid);
                     batch.set(usersRef, data);
 
-                    DocumentReference busRef = db.collection("Buses").document(busID);
+                    DocumentReference busRef = db.collection("buses").document(busID);
                     batch.update(busRef, "seats_available", String.valueOf(Integer.parseInt(seatAvailable) - 1));
 
                     batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -146,12 +147,13 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(id) && id.length()==8 && id.charAt(0)=='1' && id.charAt(1)=='1'){
 
 
-            merchantId = "rIuKCZ25498236396834";
-            merchantKey = "UipnNh0d6Qm#SkI!";
+            merchantId = "sNUXVx29909317083112";
+            merchantKey = "AaQBvILsmgNdgb4h";
             customerId = generateStringID(name);
             orderId = orderId();
             channelId = "WAP";
             website = "DEFAULT";
+            Toast.makeText(this, "transaction amount "+txnAmount, Toast.LENGTH_SHORT).show();
             callbackUrl = "https://securegw.paytm.in/theia/paytmCallback?ORDER_ID=" + orderId;
             industryType = "Retail";
             String url = "https://phppayment.herokuapp.com/checksum.php";
@@ -211,14 +213,14 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
                                     @Override
                                     public void onTransactionResponse( final Bundle inResponse) {
                                         Log.d("LOG", "Payment Transaction is successful " + inResponse);
-                                        if(inResponse.get("STATUS")=="TXN_SUCCESS"){
+//                                        if(inResponse.get("STATUS")=="TXN_SUCCESS"){
                                             //work
-                                            addToDatabase(getIntent().getStringExtra("busid"), name, id, getIntent().getStringExtra("BUS_TIME"));
+                                            addToDatabase(getIntent().getStringExtra("busid"), name, id, getIntent().getStringExtra("time"));
                                             Toast.makeText(getApplicationContext(), "Transaction successful generating ticket.", Toast.LENGTH_LONG).show();
-                                        }
-                                        else{
-                                            Toast.makeText(PaymentActivity.this, "the transaction was unsuccessful due to some reason", Toast.LENGTH_SHORT).show();
-                                        }
+//                                        }
+//                                        else{
+//                                            Toast.makeText(PaymentActivity.this, "the transaction was unsuccessful due to some reason", Toast.LENGTH_SHORT).show();
+//                                        }
                                     }
 
                                     @Override

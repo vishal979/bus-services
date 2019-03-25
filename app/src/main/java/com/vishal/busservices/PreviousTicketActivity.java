@@ -44,7 +44,7 @@ public class PreviousTicketActivity extends AppCompatActivity {
                     personList=new ArrayList<>();
                     for (DocumentSnapshot documentSnapshot : task.getResult()){
                         Log.d(TAG, documentSnapshot.toString());
-                        personList.add(new Person(documentSnapshot.getId().toString(), documentSnapshot.getData().get("user_name").toString(), documentSnapshot.getData().get("dep_time").toString(), documentSnapshot.getData().get("seat_number").toString(), documentSnapshot.getData().get("book_time").toString(), documentSnapshot.getData().get("bus_id").toString()));
+                        personList.add(new Person(documentSnapshot.getId(), documentSnapshot.getData().get("user_name").toString(), documentSnapshot.getData().get("dep_time").toString(), documentSnapshot.getData().get("seat_number").toString(), documentSnapshot.getData().get("book_time").toString(), documentSnapshot.getData().get("bus_id").toString()));
                     }
                     CustomPersonAdapter adapter=new CustomPersonAdapter(getApplicationContext(),personList);
                     recyclerView.setAdapter(adapter);

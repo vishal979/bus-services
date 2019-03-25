@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="3dp"
+    app:cardCornerRadius="7dp"
+    app:contentPadding="7dp">
 <RelativeLayout
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <TextView
@@ -47,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Book Now"
+        android:background="#989"
         android:layout_centerInParent="true"
         android:layout_alignParentRight="true"
         android:id="@+id/bookNowBtn"
