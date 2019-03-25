@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:id="@+id/nameTV"
+        android:textColor="@color/black"
+        android:layout_marginLeft="15dp"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameTextView"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginRight="30dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/IDTV"
+        android:text="ID"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_below="@+id/nameTV"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/IDTextView"
+        android:layout_below="@+id/nameTV"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/IDTV"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginLeft="15dp"
+        android:text="Dep Time"
+        android:id="@+id/depTimeTV"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/depTimeTextView"
+        android:layout_below="@+id/IDTV"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"/>
+
+</RelativeLayout>

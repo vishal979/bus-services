@@ -27,89 +27,12 @@
         android:textColor="#000"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"/>
-<android.support.v7.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/nextBusTextView"
-    android:id="@+id/cardView1"
-    android:layout_margin="10dp">
-    <RelativeLayout
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginVertical="30dp">
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/depTime1"
-          android:text="Departure Time: 10AM"
-          android:textColor="#000"
-          android:textSize="15sp"
-          android:textStyle="bold"
-          android:layout_marginLeft="15dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/seatsAvail1"
-            android:text="Seats Available"
-            android:layout_marginLeft="15dp"
-            android:layout_below="@+id/depTime1"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:layout_marginTop="10dp"
-            android:textSize="15sp"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Book Ticket"
-            android:background="#989"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:layout_centerVertical="true"
-            android:id="@+id/bookTicketBtn1"/>
-    </RelativeLayout>
-</android.support.v7.widget.CardView>
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:id="@+id/cardView2"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cardView1"
-        android:layout_margin="10dp"
-        android:layout_marginTop="30dp">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginVertical="30dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/depTime2"
-                android:text="Departure Time: 10AM"
-                android:textColor="#000"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:layout_marginLeft="15dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/seatsAvail2"
-                android:text="Seats Available"
-                android:layout_marginLeft="15dp"
-                android:layout_below="@+id/depTime2"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:layout_marginTop="10dp"
-                android:textSize="15sp"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Book Ticket"
-                android:background="#989"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:layout_centerVertical="true"
-                android:id="@+id/bookTicketBtn2"/>
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+        android:id="@+id/recyclerView"
+        android:layout_below="@+id/nextBusTextView"
+        android:layout_marginTop="20dp"></android.support.v7.widget.RecyclerView>
 </RelativeLayout>
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"

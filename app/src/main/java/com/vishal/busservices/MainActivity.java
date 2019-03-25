@@ -5,14 +5,16 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,20 +25,20 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     NavigationView navigationView;
     ImageView drawerPullIV;
     DrawerLayout drawerLayout;
+    RecyclerView recyclerView;
 
-    TextView nextBusTextView;
+    FirebaseFirestore db;
 
-    FirebaseFirestore db=FirebaseFirestore.getInstance();
-
-    String nextBusDate="";
-
-    private Button bookTicket1, bookTicket2;
-
+    List<DetailBusClass> busList;
+    TextView nextBusTV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,35 +53,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
+        recyclerView=(RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        nextBusTextView=(TextView) findViewById(R.id.nextBusTextView);
-
-        bookTicket1=(Button) findViewById(R.id.bookTicketBtn1);
-        bookTicket2=(Button) findViewById(R.id.bookTicketBtn2);
-
-        bookTicket1.setOnClickListener(this);
-        bookTicket2.setOnClickListener(this);
+        nextBusTV=(TextView) findViewById(R.id.nextBusTextView);
 
 
-        DocumentReference documentReference=db.collection("busesandtimings").document("Date").collection("TIming").document("M0UmCxviWFxRglOrqmz1");
+        db=FirebaseFirestore.getInstance();
+
+        DocumentReference documentReference=db.collection("busDate").document("wpZLISKskWTXq5K6CvDr");
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){
-                    DocumentSnapshot doc=task.getResult();
-                    nextBusDate=doc.get("Date").toString();
-                    nextBusTextView.setText("Buses for date "+nextBusDate);
-                    Toast.makeText(MainActivity.this, "Dateeeeee:  "+doc.get("Date"), Toast.LENGTH_SHORT).show();
-                }
-                else{
+                    DocumentSnapshot snapshot=task.getResult();
+                    nextBusTV.setText("Buses For Date "+snapshot.get("Date"));
                 }
             }
         });
+
+        db.collection("buses").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    busList=new ArrayList<>();
+                    for(DocumentSnapshot documentSnapshot : task.getResult()){
+                        busList.add(new DetailBusClass(documentSnapshot.getData().get("time").toString(),Integer.parseInt(documentSnapshot.getData().get("seats").toString()),documentSnapshot.getId()));
+                    }
+                    CustomBusAdapter customBusAdapter=new CustomBusAdapter(getBaseContext(),busList);
+                    recyclerView.setAdapter(customBusAdapter);
+
+                }
+            }
+        });
+
+
     }
+
     private void signOut(){
         FirebaseAuth.getInstance().signOut();
         LoginActivity.mGoogleSignInClient.signOut();
-        Toast.makeText(MainActivity.this, "signed out", Toast.LENGTH_SHORT).show();
         Intent intent=new Intent(MainActivity.this,LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
@@ -92,23 +106,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             signOut();
         }
         if(item.getItemId()==R.id.aboutUs){
-            Toast.makeText(this, "aboutus", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage("This app was made by Vishal Sharma ID-11641150 3rd year BTECH IIT BHILAI");
+            builder.setTitle("About");
+            builder.setIcon(R.drawable.ic_bubble).show();
         }
         if(item.getItemId()==R.id.previousRides){
-            Toast.makeText(this, "previous rides", Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(MainActivity.this,PreviousTicketActivity.class);
+            startActivity(intent);
         }
         return true;
     }
 
-    @Override
-    public void onClick(View view) {
-        if(view.getId()==R.id.bookTicketBtn1){
-            Intent intent=new Intent(MainActivity.this,BookTicketActivity.class);
-            startActivity(intent);
-        }
-        if(view.getId()==R.id.bookTicketBtn2){
-            Intent intent=new Intent(MainActivity.this,BookTicketActivity.class);
-            startActivity(intent);
-        }
-    }
+
 }

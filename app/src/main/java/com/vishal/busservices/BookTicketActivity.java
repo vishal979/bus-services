@@ -1,5 +1,6 @@
 package com.vishal.busservices;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,11 +14,12 @@ public class BookTicketActivity extends AppCompatActivity implements View.OnClic
     private EditText nameEt,idET;
     private Button paymentBtn;
     private String name,id;
-
+    private String busId;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookticket);
+        busId=getIntent().getStringExtra("busid");
         nameEt=(EditText) findViewById(R.id.nameET);
         idET=(EditText) findViewById(R.id.idET);
         paymentBtn=(Button) findViewById(R.id.paymentBtn);
@@ -33,6 +35,13 @@ public class BookTicketActivity extends AppCompatActivity implements View.OnClic
             else{
                 name=nameEt.getText().toString();
                 id=idET.getText().toString();
+                Intent intent=new Intent(BookTicketActivity.this, PaymentActivity.class);
+                intent.putExtra("name",name);
+                intent.putExtra("id",id);
+                intent.putExtra("busid",busId);
+                intent.putExtra("time",getIntent().getStringExtra("time"));
+                intent.putExtra("busid",getIntent().getStringExtra("BusId"));
+                startActivity(intent);
             }
         }
     }
