@@ -13,5 +13,8 @@
     android:id="@+id/logOut"
     android:title="@string/logout">
 </item>
+    <item
+        android:id="@+id/admin"
+        android:title="@string/admin"/>
 
 </menu>

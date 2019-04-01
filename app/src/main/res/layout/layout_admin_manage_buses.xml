@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="7dp"
+    app:cardCornerRadius="10dp"
+    android:id="@+id/manageBusCardView"
+    android:clickable="true"
+    android:layout_marginBottom="5dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true"
+    android:contextClickable="true"
+    android:padding="20dp">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="Bus "
+        android:id="@+id/busIdTV"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/depTimeTV"
+        android:text="Departure Time"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/busIdTV"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bookedSeatsTV"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:text="Seats Available"
+        android:layout_below="@+id/depTimeTV"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/depTimeTextView"
+        android:textColor="@color/black"
+        android:layout_below="@+id/busIdTV"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:textSize="20sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seatsBookedTextView"
+        android:layout_below="@+id/depTimeTextView"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginRight="30dp"
+        />
+</RelativeLayout>
+
+</android.support.v7.widget.CardView>

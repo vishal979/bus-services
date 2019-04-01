@@ -5,6 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="3dp"
     app:cardCornerRadius="7dp"
+    android:layout_marginBottom="5dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true"
     app:contentPadding="7dp">
 <RelativeLayout
     android:paddingBottom="10dp"

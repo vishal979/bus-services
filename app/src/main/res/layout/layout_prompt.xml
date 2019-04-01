@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter Email Of The Admin"
+        android:textColor="@color/black"
+        android:id="@+id/enterEmailTV"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textSize="15sp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/emailET"
+        android:layout_below="@+id/enterEmailTV"
+        android:layout_marginTop="10dp"
+        />
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/passwordET"-->
+        <!--android:text="submit"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_marginLeft="30dp"-->
+        <!--android:id="@+id/submitBtn"/>-->
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Cancel"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:id="@+id/cancelBtn"-->
+        <!--android:layout_below="@+id/passwordET"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginRight="30dp"/>-->
+
+</RelativeLayout>

@@ -202,11 +202,6 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
                                     @Override
                                     public void someUIErrorOccurred(String inErrorMessage) {
                                         Toast.makeText(getApplicationContext(), "some ui error occured ", Toast.LENGTH_LONG).show();
-                                        // Some UI Error Occurred in Payment Gateway Activity.
-                                        // // This may be due to initialization of views in
-                                        // Payment Gateway Activity or may be due to //
-                                        // initialization of webview. // Error Message details
-                                        // the error occurred.
                                     }
 
 
@@ -224,22 +219,14 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
                                     }
 
                                     @Override
-                                    public void networkNotAvailable() { // If network is not
+                                    public void networkNotAvailable() {
 
                                         Toast.makeText(getApplicationContext(), "network not available", Toast.LENGTH_LONG).show();
-                                        // method gets called.
                                     }
 
                                     @Override
                                     public void clientAuthenticationFailed(String inErrorMessage) {
                                         Toast.makeText(getApplicationContext(), "client authentication failed", Toast.LENGTH_LONG).show();
-                                        // This method gets called if client authentication
-                                        // failed. // Failure may be due to following reasons //
-                                        // 1. Server error or downtime. // 2. Server unable to
-                                        // generate checksum or checksum response is not in
-                                        // proper format. // 3. Server failed to authenticate
-                                        // that client. That is value of payt_STATUS is 2. //
-                                        // Error Message describes the reason for failure.
                                     }
 
                                     @Override

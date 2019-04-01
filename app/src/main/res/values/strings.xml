@@ -5,4 +5,5 @@
     <string name="previousrides">Previous Rides</string>
     <string name="bookinghistory">Booking History</string>
     <string name="pulldrawer">Pull Drawer</string>
+    <string name="admin">Admin</string>
 </resources>

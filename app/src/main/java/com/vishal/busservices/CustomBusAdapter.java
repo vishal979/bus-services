@@ -37,7 +37,6 @@ public class CustomBusAdapter extends RecyclerView.Adapter<CustomBusAdapter.View
         final DetailBusClass bus=busList.get(position);
         holder.timeTV.setText(bus.getTime());
         holder.seatsAvailableTV.setText(""+bus.getSeats());
-        Log.d("sj","error bus "+bus);
         holder.bookNowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,5 +1,6 @@
 package com.vishal.busservices;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -10,10 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     RecyclerView recyclerView;
 
     FirebaseFirestore db;
+
+    private ArrayList<String> admins;
 
     List<DetailBusClass> busList;
     TextView nextBusTV,UserTV;
@@ -87,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                     CustomBusAdapter customBusAdapter=new CustomBusAdapter(getBaseContext(),busList);
                     recyclerView.setAdapter(customBusAdapter);
-
                 }
             }
         });
@@ -118,6 +123,55 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(item.getItemId()==R.id.previousRides){
             Intent intent=new Intent(MainActivity.this,PreviousTicketActivity.class);
             startActivity(intent);
+        }
+        if(item.getItemId()==R.id.admin){
+            //password protected dialog
+            /*
+            LayoutInflater layoutInflater=LayoutInflater.from(this);
+            View promptView=layoutInflater.inflate(R.layout.layout_prompt,null);
+            AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
+            alertDialog.setView(promptView);
+            final EditText passwordET=(EditText) promptView.findViewById(R.id.passwordET);
+            alertDialog.setCancelable(true).setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    String password=passwordET.getText().toString();
+                    if(password.equals("1111")){
+                        Intent intent=new Intent(MainActivity.this,AdminActivity.class);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(MainActivity.this, "enter valid credentials", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            });
+            AlertDialog alertDialog1=alertDialog.create();
+            alertDialog1.show();
+            */
+            admins=new ArrayList<>();
+            db.collection("admins").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if(task.isSuccessful()){
+                        for(DocumentSnapshot documentSnapshot : task.getResult()){
+                            admins.add(documentSnapshot.get("admin").toString());
+                        }
+                        String email=FirebaseAuth.getInstance().getCurrentUser().getEmail();
+                        if(admins.contains(email)){
+                            Intent intent=new Intent(MainActivity.this,AdminActivity.class);
+                            startActivity(intent);
+                        }
+                        else{
+                            Toast.makeText(MainActivity.this, "you are not authorized to enter this section", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            });
+
         }
         return true;
     }
