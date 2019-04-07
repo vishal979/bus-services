@@ -36,6 +36,7 @@ public class ManageAdminActivity extends AppCompatActivity implements View.OnCli
     public static CustomManageAdminAdapter customManageAdminAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_admin);
         admins=new ArrayList<>();

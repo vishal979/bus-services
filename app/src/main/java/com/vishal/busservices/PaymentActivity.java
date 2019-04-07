@@ -54,6 +54,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         paytmBtn = (Button) findViewById(R.id.paytmBtn);

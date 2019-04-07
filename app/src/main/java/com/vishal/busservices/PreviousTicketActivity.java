@@ -30,6 +30,7 @@ public class PreviousTicketActivity extends AppCompatActivity {
     private static final String TAG = "PreviousTicketActivity";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_previousticket);
         recyclerView=(RecyclerView) findViewById(R.id.recyclerView);
