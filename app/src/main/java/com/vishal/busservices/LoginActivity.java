@@ -22,16 +22,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.shobhitpuri.custombuttons.GoogleSignInButton;
 
 public class LoginActivity extends AppCompatActivity {
 
-    SignInButton signInButton;
+    GoogleSignInButton signInButton;
     static GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN=2;
     FirebaseAuth mAuth;
     final String TAG="Login Activity";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        //setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -40,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
         mGoogleSignInClient= GoogleSignIn.getClient(this,gso);
         mAuth=FirebaseAuth.getInstance();
-        signInButton=(SignInButton) findViewById(R.id.googleSignInBtn);
+        signInButton=findViewById(R.id.googleSignInBtn);
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

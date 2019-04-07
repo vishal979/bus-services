@@ -23,8 +23,28 @@
           }
         },
         {
-          "client_id": "534630155128-tui2c48ujat47q4tah1smt0c3hu5inu8.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "534630155128-43ujr17snfhn12s6qagcfcr0afb2p61k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vishal.busservices",
+            "certificate_hash": "564ed58f38d514f5a5866544ffcc8231eaa1df99"
+          }
+        },
+        {
+          "client_id": "534630155128-qni9lf5bf2e3tkm8ffs94vomiv2uljv6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vishal.busservices",
+            "certificate_hash": "0e80e6dfb2e885ea3572d8886e3fc165118bc008"
+          }
+        },
+        {
+          "client_id": "534630155128-i3473c4ersvi879ejep4cgi4ft40ljnb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vishal.busservices",
+            "certificate_hash": "6ff1e5885e59c1d17661d41551fd5a2a2316d123"
+          }
         }
       ],
       "api_key": [
@@ -33,20 +53,13 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "534630155128-tui2c48ujat47q4tah1smt0c3hu5inu8.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }
