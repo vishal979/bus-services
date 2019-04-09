@@ -1,64 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="3dp"
     app:cardCornerRadius="7dp"
-    android:layout_marginBottom="5dp"
+    android:layout_marginBottom="1dp"
     app:cardPreventCornerOverlap="true"
-    app:cardUseCompatPadding="true"
-    app:contentPadding="7dp">
-<RelativeLayout
-    android:paddingBottom="10dp"
-    android:paddingTop="10dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timeTV"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:text="Time"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timeTextView"
-        android:text="13:00"
-        android:layout_toRightOf="@+id/timeTV"
-        android:textSize="20sp"
-        android:layout_marginLeft="10dp"
-        android:textColor="@color/black"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/seatsAvailableTV"
-        android:text="Seats Available"
-        android:layout_below="@+id/timeTV"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/seatsAvailableTextView"
-        android:text="50"
-        android:layout_below="@+id/timeTV"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_toRightOf="@+id/seatsAvailableTV"
-        android:layout_marginLeft="10dp"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Book Now"
-        android:background="#989"
-        android:layout_centerInParent="true"
-        android:layout_alignParentRight="true"
-        android:id="@+id/bookNowBtn"
-        />
-</RelativeLayout>
+    app:cardUseCompatPadding="true">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="3dp"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:id="@+id/timeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/timeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/timeTV"
+                android:text="13:00"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/seatsAvailableTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/timeTV"
+                android:layout_marginTop="10dp"
+                android:text="Seats Available"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/seatsAvailableTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/timeTV"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/seatsAvailableTV"
+                android:text="50"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/drop_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@color/white"
+                android:scaleX=".7"
+                android:scaleY=".7"
+                android:src="@drawable/down_arrow_hide" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/expand_area"
+            android:animateLayoutChanges="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f4f4f4"
+            android:orientation="vertical"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="2dp"
+            app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
+            app:layout_constraintStart_toStartOf="@+id/relativeLayout"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+            <EditText
+                android:id="@+id/enter_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Name" />
+
+            <EditText
+                android:id="@+id/enter_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/enter_name"
+                android:hint="Enter ID" />
+
+            <TextView
+                android:id="@+id/no_seat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sorry all the seats are already booked"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:visibility="invisible"/>
+
+            <Button
+                android:id="@+id/bookNowBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/enter_id"
+                android:layout_alignEnd="@+id/enter_id"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="0dp"
+                android:text="Book and Pay" />
+        </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
+
 </android.support.v7.widget.CardView>

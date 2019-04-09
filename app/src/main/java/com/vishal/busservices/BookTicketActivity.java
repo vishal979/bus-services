@@ -17,7 +17,6 @@ public class BookTicketActivity extends AppCompatActivity implements View.OnClic
     private String busId;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookticket);
         busId=getIntent().getStringExtra("busid");

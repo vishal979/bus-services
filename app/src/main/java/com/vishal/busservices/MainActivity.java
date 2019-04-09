@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageView drawerPullIV;
     DrawerLayout drawerLayout;
     RecyclerView recyclerView;
+    CalendarView calendarView;
+
+    String dateText;
 
     FirebaseFirestore db;
 
@@ -45,9 +50,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView nextBusTV,UserTV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        calendarView = findViewById(R.id.datePicker);
         navigationView=(NavigationView) findViewById(R.id.app_drawer_nv);
         View headerView=navigationView.getHeaderView(0);
         UserTV=(TextView) headerView.findViewById(R.id.navigationUsernameTV);
@@ -66,6 +71,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         nextBusTV=(TextView) findViewById(R.id.nextBusTextView);
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d MMMM YYYY");
+        dateText = dateFormat.format(calendarView.getDate());
+        nextBusTV.setText("Buses for Date " + dateText);
+
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+                dateText = Integer.toString(i2) + " ";
+                switch (i1+1) {
+                    case 1: dateText += "January";  break;
+                    case 2: dateText += "February";  break;
+                    case 3: dateText += "March";  break;
+                    case 4: dateText += "April";  break;
+                    case 5: dateText += "May";  break;
+                    case 6: dateText += "June";  break;
+                    case 7: dateText += "July";  break;
+                    case 8: dateText += "August";  break;
+                    case 9: dateText += "September";  break;
+                    case 10: dateText += "October";  break;
+                    case 11: dateText += "November";  break;
+                    case 12: dateText += "December";  break;
+                }
+                dateText += " " + i;
+                nextBusTV.setText("Buses for Date " + dateText);
+            }
+        });
+
+
+
         String email=FirebaseAuth.getInstance().getCurrentUser().getEmail();
         String[] parts=email.split("@");
         String username=parts[0];
@@ -79,7 +113,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){
                     DocumentSnapshot snapshot=task.getResult();
-                    nextBusTV.setText("Buses For Date "+snapshot.get("Date"));
+                    //nextBusTV.setText("Buses For Date "+snapshot.get("Date"));
+
                 }
             }
         });

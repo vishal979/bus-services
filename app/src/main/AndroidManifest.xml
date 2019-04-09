@@ -11,11 +11,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.Launcher">
+        android:theme="@style/AppTheme">
         <activity android:name=".ManageBusActivity"></activity>
         <activity android:name=".ManageAdminActivity" />
         <activity android:name=".AdminActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".SplashActivity"
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

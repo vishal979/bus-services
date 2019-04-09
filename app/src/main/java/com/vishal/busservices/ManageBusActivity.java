@@ -25,7 +25,6 @@ public class ManageBusActivity extends AppCompatActivity {
     CustomAdminBusAdapter customAdminBusAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_bus);
         db= FirebaseFirestore.getInstance();
